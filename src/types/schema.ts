@@ -6,7 +6,6 @@ import {
   Value,
   ValueKind,
   store,
-  Address,
   Bytes,
   BigInt,
   BigDecimal
@@ -20,22 +19,23 @@ export class User extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save User entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save User entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("User", id.toString(), this);
+    assert(id != null, "Cannot save User entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type User must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("User", id.toString(), this);
+    }
   }
 
   static load(id: string): User | null {
-    return store.get("User", id) as User | null;
+    return changetype<User | null>(store.get("User", id));
   }
 
   get id(): string {
     let value = this.get("id");
-    return value.toString();
+    return value!.toString();
   }
 
   set id(value: string) {
@@ -44,7 +44,7 @@ export class User extends Entity {
 
   get address(): string {
     let value = this.get("address");
-    return value.toString();
+    return value!.toString();
   }
 
   set address(value: string) {
@@ -53,7 +53,7 @@ export class User extends Entity {
 
   get balance(): BigInt {
     let value = this.get("balance");
-    return value.toBigInt();
+    return value!.toBigInt();
   }
 
   set balance(value: BigInt) {
@@ -62,7 +62,7 @@ export class User extends Entity {
 
   get transactionCount(): i32 {
     let value = this.get("transactionCount");
-    return value.toI32();
+    return value!.toI32();
   }
 
   set transactionCount(value: i32) {
@@ -78,22 +78,23 @@ export class Minter extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save Minter entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Minter entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Minter", id.toString(), this);
+    assert(id != null, "Cannot save Minter entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type Minter must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Minter", id.toString(), this);
+    }
   }
 
   static load(id: string): Minter | null {
-    return store.get("Minter", id) as Minter | null;
+    return changetype<Minter | null>(store.get("Minter", id));
   }
 
   get id(): string {
     let value = this.get("id");
-    return value.toString();
+    return value!.toString();
   }
 
   set id(value: string) {
@@ -102,7 +103,7 @@ export class Minter extends Entity {
 
   get address(): string {
     let value = this.get("address");
-    return value.toString();
+    return value!.toString();
   }
 
   set address(value: string) {
@@ -111,7 +112,7 @@ export class Minter extends Entity {
 
   get totalMinted(): BigInt {
     let value = this.get("totalMinted");
-    return value.toBigInt();
+    return value!.toBigInt();
   }
 
   set totalMinted(value: BigInt) {
@@ -120,7 +121,7 @@ export class Minter extends Entity {
 
   get totalBurned(): BigInt {
     let value = this.get("totalBurned");
-    return value.toBigInt();
+    return value!.toBigInt();
   }
 
   set totalBurned(value: BigInt) {
@@ -136,22 +137,23 @@ export class UserCounter extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save UserCounter entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save UserCounter entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("UserCounter", id.toString(), this);
+    assert(id != null, "Cannot save UserCounter entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type UserCounter must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("UserCounter", id.toString(), this);
+    }
   }
 
   static load(id: string): UserCounter | null {
-    return store.get("UserCounter", id) as UserCounter | null;
+    return changetype<UserCounter | null>(store.get("UserCounter", id));
   }
 
   get id(): string {
     let value = this.get("id");
-    return value.toString();
+    return value!.toString();
   }
 
   set id(value: string) {
@@ -160,7 +162,7 @@ export class UserCounter extends Entity {
 
   get count(): i32 {
     let value = this.get("count");
-    return value.toI32();
+    return value!.toI32();
   }
 
   set count(value: i32) {
@@ -176,22 +178,23 @@ export class MinterCounter extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save MinterCounter entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save MinterCounter entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("MinterCounter", id.toString(), this);
+    assert(id != null, "Cannot save MinterCounter entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type MinterCounter must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("MinterCounter", id.toString(), this);
+    }
   }
 
   static load(id: string): MinterCounter | null {
-    return store.get("MinterCounter", id) as MinterCounter | null;
+    return changetype<MinterCounter | null>(store.get("MinterCounter", id));
   }
 
   get id(): string {
     let value = this.get("id");
-    return value.toString();
+    return value!.toString();
   }
 
   set id(value: string) {
@@ -200,7 +203,7 @@ export class MinterCounter extends Entity {
 
   get count(): i32 {
     let value = this.get("count");
-    return value.toI32();
+    return value!.toI32();
   }
 
   set count(value: i32) {
@@ -216,22 +219,23 @@ export class TransferCounter extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save TransferCounter entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save TransferCounter entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("TransferCounter", id.toString(), this);
+    assert(id != null, "Cannot save TransferCounter entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type TransferCounter must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("TransferCounter", id.toString(), this);
+    }
   }
 
   static load(id: string): TransferCounter | null {
-    return store.get("TransferCounter", id) as TransferCounter | null;
+    return changetype<TransferCounter | null>(store.get("TransferCounter", id));
   }
 
   get id(): string {
     let value = this.get("id");
-    return value.toString();
+    return value!.toString();
   }
 
   set id(value: string) {
@@ -240,7 +244,7 @@ export class TransferCounter extends Entity {
 
   get count(): i32 {
     let value = this.get("count");
-    return value.toI32();
+    return value!.toI32();
   }
 
   set count(value: i32) {
@@ -249,7 +253,7 @@ export class TransferCounter extends Entity {
 
   get totalTransferred(): BigInt {
     let value = this.get("totalTransferred");
-    return value.toBigInt();
+    return value!.toBigInt();
   }
 
   set totalTransferred(value: BigInt) {
@@ -265,22 +269,23 @@ export class TotalSupply extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save TotalSupply entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save TotalSupply entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("TotalSupply", id.toString(), this);
+    assert(id != null, "Cannot save TotalSupply entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type TotalSupply must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("TotalSupply", id.toString(), this);
+    }
   }
 
   static load(id: string): TotalSupply | null {
-    return store.get("TotalSupply", id) as TotalSupply | null;
+    return changetype<TotalSupply | null>(store.get("TotalSupply", id));
   }
 
   get id(): string {
     let value = this.get("id");
-    return value.toString();
+    return value!.toString();
   }
 
   set id(value: string) {
@@ -289,7 +294,7 @@ export class TotalSupply extends Entity {
 
   get supply(): BigInt {
     let value = this.get("supply");
-    return value.toBigInt();
+    return value!.toBigInt();
   }
 
   set supply(value: BigInt) {
@@ -298,7 +303,7 @@ export class TotalSupply extends Entity {
 
   get minted(): BigInt {
     let value = this.get("minted");
-    return value.toBigInt();
+    return value!.toBigInt();
   }
 
   set minted(value: BigInt) {
@@ -307,7 +312,7 @@ export class TotalSupply extends Entity {
 
   get burned(): BigInt {
     let value = this.get("burned");
-    return value.toBigInt();
+    return value!.toBigInt();
   }
 
   set burned(value: BigInt) {

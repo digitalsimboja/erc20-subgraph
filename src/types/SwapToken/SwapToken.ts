@@ -290,9 +290,9 @@ export class Transfer__Params {
   }
 }
 
-export class FiatTokenV1 extends ethereum.SmartContract {
-  static bind(address: Address): FiatTokenV1 {
-    return new FiatTokenV1("FiatTokenV1", address);
+export class SwapToken extends ethereum.SmartContract {
+  static bind(address: Address): SwapToken {
+    return new SwapToken("SwapToken", address);
   }
 
   name(): string {

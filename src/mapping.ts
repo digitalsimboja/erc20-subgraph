@@ -1,4 +1,4 @@
-import { Mint, Burn, Transfer } from './types/FiatTokenV1/FiatTokenV1'
+import { Mint, Burn, Transfer } from './types/SwapToken/SwapToken'
 import {
   User,
   Minter,
